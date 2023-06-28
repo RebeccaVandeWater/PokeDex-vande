@@ -5,18 +5,24 @@ export class Pokemon {
         this.img = data.sprites ? data.sprites.front_default : ''
         this.weight = data.weight ? data.weight : ''
         this.height = data.height ? data.height : ''
-
-        // FIXME Add types from Sandbox, fix the img for the Sandbox to read
+        this.types = data.types || []
     }
 
     get activeWildTemplate() {
         return /*html*/`
-        <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="d-flex flex-column align-items-center justify-content-center mt-4">
             <img class="img-fluid me-3 img-size" src="${this.img}" alt="${this.name}">
+
             <h1>${this.name}</h1>
-            <p><span>Height: ${this.height}</span> <span>Weight: ${this.weight}</span> </p>
+
+            <div class="d-flex fs-4">
+                <p class="me-4">Height: ${this.height}</p>
+                <p class="me-4">Weight: ${this.weight} lbs</p>
+                <p>Types: ${this.types[0].type.name}, ${this.types[1].type.name} </p>
+            </div>
+
             <div>
-                <button onclick="" class="btn btn-success">
+                <button onclick="app.SandboxPokemonsController.catchPokemon('${this.name}')" class="btn btn-success">
                 Catch
                 </button>
             </div>
