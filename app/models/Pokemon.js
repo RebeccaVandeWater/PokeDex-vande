@@ -18,7 +18,7 @@ export class Pokemon {
             <div class="d-flex fs-4">
                 <p class="me-4">Height: ${this.height}</p>
                 <p class="me-4">Weight: ${this.weight} lbs</p>
-                <p>Types: ${this.types[0].type.name}, ${this.types[1].type.name} </p>
+                <p>Types: ${this.ComputeTypes} </p>
             </div>
 
             <div>
@@ -28,5 +28,13 @@ export class Pokemon {
             </div>
         </div>
         `
+    }
+
+    get ComputeTypes() {
+        let template = ''
+
+        this.types.forEach(t => template += `<span>${t.type.name} ${this.types.length > 1 && t != this.types[this.types.length - 1] ? ' , ' : ''}</span>`)
+
+        return template
     }
 }
